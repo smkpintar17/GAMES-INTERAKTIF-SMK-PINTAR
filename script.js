@@ -1,5 +1,5 @@
 // DEFAULT WEB APP URL
-let defaultScriptUrl = "https://script.google.com/macros/s/AKfycbyKfhrKQqSaVHMGc3D2v9Ag8owh1apSU4pTDMRZHP1-qzvPi7IU0QGvvOhvn_51_U5tVg/exec";
+let defaultScriptUrl = "https://script.google.com/macros/s/AKfycbxFDg8b8w461XCKtxmHhEXhAc8WXGxqWgudE5zUjJd_bXq9AX-5YWil1gjtJFdU03xuPw/exec";
 
 // STATE GAME
 let currentUser = {
