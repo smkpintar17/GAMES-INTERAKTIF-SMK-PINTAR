@@ -1,3 +1,6 @@
+/* ==========================================
+   GLOBAL RESET & STYLES 3D
+   ========================================== */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,420 +9,253 @@
 }
 
 body {
-    background-color: #f0f4f8;
-    color: #2d3748;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     padding: 20px;
-    position: relative;
-    overflow-x: hidden;
+    color: #f8fafc;
 }
 
-.background-decor .circle {
+/* Background Decor 3D Orbs */
+.background-decor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.circle {
     position: absolute;
     border-radius: 50%;
     filter: blur(80px);
-    z-index: -1;
+    opacity: 0.6;
 }
 
 .c1 {
     width: 300px;
     height: 300px;
-    background: rgba(72, 187, 120, 0.3);
-    top: -50px;
-    left: -50px;
+    background: #3b82f6;
+    top: 10%;
+    left: 15%;
 }
 
 .c2 {
-    width: 350px;
-    height: 350px;
-    background: rgba(66, 153, 225, 0.3);
-    bottom: -50px;
-    right: -50px;
+    width: 250px;
+    height: 250px;
+    background: #10b981;
+    bottom: 10%;
+    right: 15%;
 }
 
+/* Container & Card 3D */
 .container {
     width: 100%;
-    max-width: 800px;
+    max-width: 680px;
+    perspective: 1000px;
 }
 
-header {
-    text-align: center;
-    margin-bottom: 20px;
+.card {
+    background: #1e293b;
+    border: 2px solid #334155;
+    border-radius: 24px;
+    padding: 32px;
+    /* Efek Bayangan Timbul 3D */
+    box-shadow: 0 20px 0 0 #0f172a, 0 25px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Header Badge 3D */
 .badge-banyuwangi {
-    background: #e6fffa;
-    color: #234e52;
-    font-weight: 600;
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 0.85rem;
     display: inline-block;
-    margin-bottom: 8px;
-    border: 1px solid #b2f5ea;
+    background: #0284c7;
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 4px 0 #0369a1;
+    margin-bottom: 10px;
 }
 
 header h1 {
     font-size: 1.8rem;
-    color: #1a202c;
     font-weight: 700;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 
-.card {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 30px;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-    transition: all 0.3s ease;
-}
-
-.hidden {
-    display: none !important;
-}
-
-.subtitle {
-    color: #718096;
-    font-size: 0.95rem;
-    margin-bottom: 25px;
-}
-
+/* Form Input 3D */
 .input-group {
     margin-bottom: 20px;
+    text-align: left;
 }
 
 .input-group label {
     display: block;
+    font-size: 0.9rem;
     font-weight: 600;
     margin-bottom: 8px;
-    font-size: 0.9rem;
-    color: #4a5568;
+    color: #cbd5e1;
 }
 
-.input-group input, .input-group textarea {
+.input-group input, 
+.essay-box textarea {
     width: 100%;
-    padding: 12px 16px;
-    border: 2px solid #e2e8f0;
-    border-radius: 10px;
-    font-size: 0.95rem;
-    transition: border-color 0.2s ease;
-    outline: none;
-}
-
-.input-group input:focus, .input-group textarea:focus {
-    border-color: #3182ce;
-}
-
-.hint {
-    display: block;
-    font-size: 0.75rem;
-    color: #a0aec0;
-    margin-top: 5px;
-}
-
-.btn {
-    padding: 12px 24px;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.1s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-
-.btn:active {
-    transform: scale(0.98);
-}
-
-.btn-primary {
-    background: #3182ce;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 2px solid #334155;
+    background: #0f172a;
     color: #fff;
+    font-size: 1rem;
+    outline: none;
+    /* Inset shadow untuk efek kedalaman input */
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: border-color 0.2s;
 }
 
-.btn-primary:hover {
-    background: #2b6cb0;
+.input-group input:focus,
+.essay-box textarea:focus {
+    border-color: #3b82f6;
+}
+
+/* Button 3D Pushable Effect */
+.btn {
+    display: inline-block;
+    width: 100%;
+    padding: 16px 24px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-align: center;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.1s ease;
+}
+
+/* Warna & Layer 3D Tombol */
+.btn-primary {
+    background: #3b82f6;
+    color: #fff;
+    box-shadow: 0 6px 0 #1d4ed8, 0 10px 15px rgba(0, 0, 0, 0.3);
 }
 
 .btn-secondary {
-    background: #4a5568;
+    background: #64748b;
     color: #fff;
-}
-
-.btn-secondary:hover {
-    background: #2d3748;
+    box-shadow: 0 6px 0 #334155, 0 10px 15px rgba(0, 0, 0, 0.3);
 }
 
 .btn-success {
-    background: #38a169;
+    background: #10b981;
     color: #fff;
+    box-shadow: 0 6px 0 #047857, 0 10px 15px rgba(0, 0, 0, 0.3);
 }
 
-.btn-success:hover {
-    background: #2f855a;
+/* Efek Tombol Ditekan (3D Click) */
+.btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #0f172a, 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-.btn-block {
-    width: 100%;
-}
-
-/* QUIZ STYLES */
+/* Quiz Header & Score Badges 3D */
 .quiz-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #edf2f7;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.user-badge {
-    background: #edf2f7;
-    padding: 6px 12px;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #4a5568;
-}
-
-.progress-container {
-    flex: 1;
-    max-width: 250px;
-    margin: 0 15px;
-}
-
-#progress-text {
-    font-size: 0.8rem;
-    color: #718096;
-    display: block;
-    margin-bottom: 4px;
-    font-weight: 600;
+    gap: 12px;
+    margin-bottom: 24px;
+    background: #0f172a;
+    padding: 12px 18px;
+    border-radius: 16px;
+    border: 1px solid #334155;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .progress-bar {
     width: 100%;
-    height: 8px;
-    background: #e2e8f0;
-    border-radius: 4px;
+    height: 12px;
+    background: #334155;
+    border-radius: 10px;
     overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
 }
 
 #progress-fill {
     height: 100%;
-    background: #3182ce;
+    background: linear-gradient(90deg, #3b82f6, #10b981);
+    border-radius: 10px;
     transition: width 0.3s ease;
 }
 
-.score-badge {
-    background: #feebc8;
-    color: #742a2a;
-    padding: 6px 12px;
-    border-radius: 8px;
-    font-size: 0.85rem;
-}
-
-.question-header {
-    margin-bottom: 20px;
-}
-
-.badge {
-    background: #ebf8ff;
-    color: #2b6cb0;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 6px;
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
-#question-text {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #2d3748;
-}
-
+/* Pilihan Ganda 3D Grid */
 .options-grid {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
+    margin: 20px 0;
 }
 
-.option-btn {
-    text-align: left;
-    background: #f7fafc;
-    border: 2px solid #e2e8f0;
-    padding: 14px 18px;
-    border-radius: 10px;
+.option-card {
+    background: #0f172a;
+    border: 2px solid #334155;
+    padding: 16px 20px;
+    border-radius: 16px;
     cursor: pointer;
-    font-size: 0.95rem;
-    color: #4a5568;
-    transition: all 0.2s ease;
-}
-
-.option-btn:hover {
-    background: #ebf8ff;
-    border-color: #3182ce;
-}
-
-.option-btn.selected {
-    background: #ebf8ff;
-    border-color: #3182ce;
-    color: #2b6cb0;
+    text-align: left;
     font-weight: 600;
+    box-shadow: 0 5px 0 #020617;
+    transition: all 0.15s ease;
 }
 
-.essay-box label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #4a5568;
+.option-card:hover {
+    border-color: #3b82f6;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 0 #020617;
 }
 
-.essay-box textarea {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #e2e8f0;
-    border-radius: 10px;
-    font-size: 0.95rem;
-    resize: vertical;
+.option-card:active, .option-card.selected {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #020617;
+    border-color: #10b981;
+    background: #1e293b;
 }
 
-.quiz-footer {
-    margin-top: 30px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-/* RESULT & LEADERBOARD */
-.trophy-icon {
-    font-size: 3.5rem;
-    margin-bottom: 10px;
-}
-
-.result-header h2 {
-    font-size: 1.8rem;
-    color: #2d3748;
-}
-
+/* Result & Score Cards 3D */
 .score-summary {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin: 25px 0;
+    gap: 16px;
+    margin: 24px 0;
 }
 
 .score-card {
+    background: #0f172a;
+    border-radius: 18px;
     padding: 20px;
-    border-radius: 12px;
-    text-align: center;
+    border: 2px solid #334155;
+    box-shadow: 0 6px 0 #020617;
 }
 
 .score-card.highlight {
-    background: #e6fffa;
-    border: 1px solid #b2f5ea;
-}
-
-.score-card.info {
-    background: #ebf8ff;
-    border: 1px solid #bee3f8;
-}
-
-.score-card .label {
-    display: block;
-    font-size: 0.85rem;
-    color: #4a5568;
-    font-weight: 600;
+    border-color: #3b82f6;
 }
 
 .score-card .value {
     display: block;
     font-size: 2.2rem;
     font-weight: 700;
-    color: #2d3748;
-    margin: 5px 0;
+    color: #3b82f6;
+    margin: 8px 0;
 }
 
-.score-card .subtext {
-    font-size: 0.75rem;
-    color: #718096;
-}
-
-.alert {
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    margin-bottom: 25px;
-    text-align: center;
-}
-
-.alert-info {
-    background: #feebc8;
-    color: #742a2a;
-}
-
-.alert-success {
-    background: #c6f6d5;
-    color: #22543d;
-}
-
-.leaderboard-section {
-    margin-top: 30px;
-    border-top: 2px solid #edf2f7;
-    padding-top: 20px;
-}
-
-.leaderboard-section h3 {
-    font-size: 1.2rem;
-    color: #2d3748;
-}
-
-.subtitle-sm {
-    font-size: 0.8rem;
-    color: #718096;
-    margin-bottom: 15px;
-}
-
-.table-responsive {
-    overflow-x: auto;
-}
-
-.table-leaderboard {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-.table-leaderboard th, .table-leaderboard td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #e2e8f0;
-    font-size: 0.9rem;
-}
-
-.table-leaderboard th {
-    background: #f7fafc;
-    color: #4a5568;
-    font-weight: 600;
-}
-
-.table-leaderboard tr:nth-child(1) {
-    background: #fffaf0;
-    font-weight: 600;
-}
-
-.action-buttons {
-    margin-top: 30px;
-}
-
-.text-center {
-    text-align: center;
+/* Utility Helper */
+.hidden {
+    display: none !important;
 }
