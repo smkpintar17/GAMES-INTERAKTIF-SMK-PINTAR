@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Wisata Banyuwangi & Kompetensi</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <div class="background-decor">
+        <div class="circle c1"></div>
+        <div class="circle c2"></div>
+    </div>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <div class="logo-area">
+                <span class="badge-banyuwangi">🌴 Explore Banyuwangi</span>
+                <h1>Interactive Quiz Game</h1>
+            </div>
+        </header>
+
+        <!-- SCREEN 1: LOGIN / REGISTER -->
+        <section id="screen-login" class="card active">
+            <h2>Selamat Datang!</h2>
+            <p class="subtitle">Isi data diri untuk mulai petualangan kuis wisata & ilmu IT Banyuwangi!</p>
+            
+            <form id="form-login">
+                <div class="input-group">
+                    <label for="no-absen">Nomor Absen</label>
+                    <input type="number" id="no-absen" min="1" placeholder="Masukkan nomor absen (contoh: 12)" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="nama-lengkap">Nama Lengkap</label>
+                    <input type="text" id="nama-lengkap" placeholder="Masukkan nama lengkap Anda" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="script-url">URL Google Apps Script (Web App)</label>
+                    <input type="url" id="script-url" placeholder="https://script.google.com/macros/s/.../exec">
+                    <small class="hint">Opsional: Biarkan sesuai default jika sudah terkonfigurasi di JS, atau isi URL deployment Apps Script Anda.</small>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">🚀 Mulai Kuis Sekarang</button>
+            </form>
+        </section>
+
+        <!-- SCREEN 2: QUIZ -->
+        <section id="screen-quiz" class="card hidden">
+            <!-- TOP BAR -->
+            <div class="quiz-header">
+                <div class="user-badge">
+                    <span id="display-user-info">Absen -- | User</span>
+                </div>
+                <div class="progress-container">
+                    <span id="progress-text">Soal 1 dari 37</span>
+                    <div class="progress-bar">
+                        <div id="progress-fill" style="width: 0%;"></div>
+                    </div>
+                </div>
+                <div class="score-badge">
+                    <span>Skor PG: <strong id="current-score">0</strong></span>
+                </div>
+            </div>
+
+            <!-- QUESTION AREA -->
+            <div id="question-container">
+                <div class="question-header">
+                    <span id="question-type" class="badge">Pilihan Ganda</span>
+                    <h3 id="question-text">Teks pertanyaan akan muncul di sini...</h3>
+                </div>
+
+                <!-- PG OPTIONS -->
+                <div id="options-container" class="options-grid">
+                    <!-- Dynamic Options -->
+                </div>
+
+                <!-- ESSAY INPUT -->
+                <div id="essay-container" class="essay-box hidden">
+                    <label for="essay-answer">Jawaban Anda (Uraikan dengan jelas):</label>
+                    <textarea id="essay-answer" rows="6" placeholder="Ketik jawaban lengkap Anda di sini..."></textarea>
+                </div>
+            </div>
+
+            <!-- NAVIGATION BUTTONS -->
+            <div class="quiz-footer">
+                <button id="btn-next" class="btn btn-secondary" onclick="nextQuestion()">Pertanyaan Berikutnya ➔</button>
+                <button id="btn-submit" class="btn btn-success hidden" onclick="submitQuiz()">📥 Kirim Jawaban</button>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: RESULT & DASHBOARD -->
+        <section id="screen-result" class="card hidden">
+            <div class="result-header text-center">
+                <div class="trophy-icon">🏆</div>
+                <h2>Kuis Selesai!</h2>
+                <p>Terima kasih telah menyelesaikan Kuis Wisata & IT Banyuwangi!</p>
+            </div>
+
+            <div class="score-summary">
+                <div class="score-card highlight">
+                    <span class="label">Total Nilai PG</span>
+                    <span class="value" id="final-pg-score">0</span>
+                    <span class="subtext">Maksimal 70 Poin (35 Soal × 2)</span>
+                </div>
+                <div class="score-card info">
+                    <span class="label">Status Esai</span>
+                    <span class="value">Menunggu</span>
+                    <span class="subtext">Esai (2 Soal @15 Poin) dikirim ke Spreadsheet</span>
+                </div>
+            </div>
+
+            <div class="status-sync alert alert-info" id="sync-status">
+                ⏳ Mengirim data nilai ke Google Sheets...
+            </div>
+
+            <!-- LEADERBOARD / DASHBOARD -->
+            <div class="leaderboard-section">
+                <h3>📊 Ranking & Leaderboard (Nilai PG Teratas)</h3>
+                <p class="subtitle-sm">Data diambil secara terintegrasi dari Google Sheets Dashboard</p>
+
+                <div class="table-responsive">
+                    <table class="table-leaderboard">
+                        <thead>
+                            <tr>
+                                <th>Peringkat</th>
+                                <th>No. Absen</th>
+                                <th>Nama Lengkap</th>
+                                <th>Nilai PG</th>
+                                <th>Waktu Selesai</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body">
+                            <tr>
+                                <td colspan="5" class="text-center">Memuat data papan peringkat...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="action-buttons text-center">
+                <button class="btn btn-primary" onclick="location.reload()">🔄 Ulangi Kuis / Pengguna Baru</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
