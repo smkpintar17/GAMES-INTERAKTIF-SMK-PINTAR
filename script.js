@@ -1,5 +1,5 @@
 // DEFAULT WEB APP URL (Bisa diisi jika sudah deploy Apps Script)
-let defaultScriptUrl = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
+let defaultScriptUrl = "https://script.google.com/macros/s/AKfycbyKfhrKQqSaVHMGc3D2v9Ag8owh1apSU4pTDMRZHP1-qzvPi7IU0QGvvOhvn_51_U5tVg/exec";
 
 // STATE GAME
 let currentUser = {
